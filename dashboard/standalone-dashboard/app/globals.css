@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --robovm-bg: #0b1e3e;
+  --robovm-accent: #d2618f;
+  --robovm-text: #ffffff;
+  --robovm-text-secondary: #b0c4de;
+}
+
+body {
+  background-color: var(--robovm-bg);
+  color: var(--robovm-text);
+}
+
+.grid-cols-25 {
+  grid-template-columns: 60px repeat(24, minmax(0, 1fr));
+}
+

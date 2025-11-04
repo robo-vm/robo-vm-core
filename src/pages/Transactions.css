@@ -1,0 +1,87 @@
+.transactions {
+  padding: 2rem;
+}
+
+.transactions h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.transactions-table {
+  background-color: #1a1f3a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #0f1322;
+}
+
+th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #888;
+  border-bottom: 1px solid #2d3653;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #2d3653;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover {
+  background-color: #0f1322;
+}
+
+.tx-hash {
+  font-family: monospace;
+  color: #667eea;
+  cursor: pointer;
+}
+
+.tx-hash:hover {
+  text-decoration: underline;
+}
+
+.tx-type {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tx-type-taskcreated {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.tx-type-taskaccepted {
+  background-color: #f59e0b;
+  color: #ffffff;
+}
+
+.tx-type-taskfinalized {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.tx-amount {
+  color: #fbbf24;
+  font-weight: 500;
+}
+
+.tx-time {
+  color: #888;
+}
+

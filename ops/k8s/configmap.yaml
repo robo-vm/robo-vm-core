@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: robot-config
+  namespace: robovm
+data:
+  robot_id: "robot_001"
+  robot_type: "rover"
+  rpc_url: "https://bsc-dataseed.binance.org/"
+  contract_address: "0x0000000000000000000000000000000000000000"
+  ipfs_host: "ipfs-service"
+  ipfs_port: "5001"
+

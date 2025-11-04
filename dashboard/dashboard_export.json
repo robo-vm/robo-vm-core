@@ -1,0 +1,461 @@
+{
+  "dashboard_title": "RoboVM Network Analytics",
+  "slug": "robovm-network-analytics",
+  "description": "Comprehensive monitoring dashboard for RoboVM decentralized robot network",
+  "css": "",
+  "dashboard_position": "{}",
+  "published": true,
+  "charts": [
+    {
+      "id": 1,
+      "slice_name": "Active Robots Overview",
+      "viz_type": "big_number_total",
+      "datasource": "robots",
+      "params": {
+        "metric": "COUNT(*)",
+        "adhoc_filters": [
+          {
+            "clause": "WHERE",
+            "expressionType": "SQL",
+            "sqlExpression": "status = 'active'"
+          }
+        ]
+      },
+      "position": {
+        "x": 0,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      }
+    },
+    {
+      "id": 2,
+      "slice_name": "Pending Tasks",
+      "viz_type": "big_number_total",
+      "datasource": "tasks",
+      "params": {
+        "metric": "COUNT(*)",
+        "adhoc_filters": [
+          {
+            "clause": "WHERE",
+            "expressionType": "SQL",
+            "sqlExpression": "status = 'pending'"
+          }
+        ]
+      },
+      "position": {
+        "x": 3,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      }
+    },
+    {
+      "id": 3,
+      "slice_name": "Total Tasks Completed",
+      "viz_type": "big_number_total",
+      "datasource": "tasks",
+      "params": {
+        "metric": "COUNT(*)",
+        "adhoc_filters": [
+          {
+            "clause": "WHERE",
+            "expressionType": "SQL",
+            "sqlExpression": "status = 'completed'"
+          }
+        ]
+      },
+      "position": {
+        "x": 6,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      }
+    },
+    {
+      "id": 4,
+      "slice_name": "Total Rewards Distributed",
+      "viz_type": "big_number_total",
+      "datasource": "tasks",
+      "params": {
+        "metric": "SUM(reward)",
+        "number_format": "SMART_NUMBER",
+        "adhoc_filters": [
+          {
+            "clause": "WHERE",
+            "expressionType": "SQL",
+            "sqlExpression": "status = 'completed'"
+          }
+        ]
+      },
+      "position": {
+        "x": 9,
+        "y": 0,
+        "w": 3,
+        "h": 4
+      }
+    },
+    {
+      "id": 5,
+      "slice_name": "Task Completion Trend",
+      "viz_type": "line",
+      "datasource": "tasks",
+      "params": {
+        "metrics": ["COUNT(*)"],
+        "groupby": ["DATE(completed_at)"],
+        "time_range": "Last 7 days",
+        "x_axis_format": "smart_date",
+        "y_axis_format": "SMART_NUMBER"
+      },
+      "position": {
+        "x": 0,
+        "y": 4,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 6,
+      "slice_name": "Robot Status Distribution",
+      "viz_type": "pie",
+      "datasource": "robots",
+      "params": {
+        "metric": "COUNT(*)",
+        "groupby": ["status"],
+        "color_scheme": "robovm_dark"
+      },
+      "position": {
+        "x": 6,
+        "y": 4,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 7,
+      "slice_name": "Transaction Volume Over Time",
+      "viz_type": "area",
+      "datasource": "transactions",
+      "params": {
+        "metrics": ["COUNT(*)"],
+        "groupby": ["DATE(timestamp)"],
+        "time_range": "Last 24 hours",
+        "x_axis_format": "smart_date"
+      },
+      "position": {
+        "x": 0,
+        "y": 12,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 8,
+      "slice_name": "Task Types Distribution",
+      "viz_type": "bar",
+      "datasource": "tasks",
+      "params": {
+        "metric": "COUNT(*)",
+        "groupby": ["task_type"],
+        "orientation": "horizontal",
+        "color_scheme": "robovm_dark"
+      },
+      "position": {
+        "x": 6,
+        "y": 12,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 9,
+      "slice_name": "Robot Battery Levels",
+      "viz_type": "bar",
+      "datasource": "robots",
+      "params": {
+        "metric": "AVG(battery_level)",
+        "groupby": ["name"],
+        "orientation": "vertical",
+        "color_scheme": "robovm_dark"
+      },
+      "position": {
+        "x": 0,
+        "y": 20,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 10,
+      "slice_name": "Reputation Scores",
+      "viz_type": "bar",
+      "datasource": "robots",
+      "params": {
+        "metric": "reputation_score",
+        "groupby": ["name"],
+        "orientation": "horizontal",
+        "color_scheme": "robovm_dark"
+      },
+      "position": {
+        "x": 6,
+        "y": 20,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 11,
+      "slice_name": "Robot Positions Map",
+      "viz_type": "deck_scatter",
+      "datasource": "robots",
+      "params": {
+        "lat": "latitude",
+        "lon": "longitude",
+        "metric": "COUNT(*)",
+        "point_radius_fixed": {"type": "fix", "value": 100},
+        "point_unit": "meters"
+      },
+      "position": {
+        "x": 0,
+        "y": 28,
+        "w": 12,
+        "h": 10
+      }
+    },
+    {
+      "id": 12,
+      "slice_name": "Tasks Table",
+      "viz_type": "table",
+      "datasource": "tasks",
+      "params": {
+        "metrics": ["COUNT(*)", "SUM(reward)", "AVG(TIMESTAMPDIFF(SECOND, created_at, completed_at))"],
+        "groupby": ["task_type", "status"],
+        "page_length": 20
+      },
+      "position": {
+        "x": 0,
+        "y": 38,
+        "w": 6,
+        "h": 10
+      }
+    },
+    {
+      "id": 13,
+      "slice_name": "Robot Performance Metrics",
+      "viz_type": "table",
+      "datasource": "robots",
+      "params": {
+        "metrics": ["total_tasks", "completed_tasks", "reputation_score", "staked_amount"],
+        "groupby": ["name", "type", "status"],
+        "page_length": 15
+      },
+      "position": {
+        "x": 6,
+        "y": 38,
+        "w": 6,
+        "h": 10
+      }
+    },
+    {
+      "id": 14,
+      "slice_name": "Energy Consumption by Task Type",
+      "viz_type": "bar",
+      "datasource": "task_metrics",
+      "params": {
+        "metric": "SUM(energy_consumed)",
+        "groupby": ["task_id"],
+        "orientation": "vertical"
+      },
+      "position": {
+        "x": 0,
+        "y": 48,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 15,
+      "slice_name": "Task Execution Time Distribution",
+      "viz_type": "histogram",
+      "datasource": "task_metrics",
+      "params": {
+        "metric": "execution_time",
+        "bins": 20
+      },
+      "position": {
+        "x": 6,
+        "y": 48,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 16,
+      "slice_name": "Transaction Types",
+      "viz_type": "pie",
+      "datasource": "transactions",
+      "params": {
+        "metric": "COUNT(*)",
+        "groupby": ["tx_type"]
+      },
+      "position": {
+        "x": 0,
+        "y": 56,
+        "w": 4,
+        "h": 8
+      }
+    },
+    {
+      "id": 17,
+      "slice_name": "Gas Costs Analysis",
+      "viz_type": "bar",
+      "datasource": "transactions",
+      "params": {
+        "metric": "SUM(gas_used * gas_price / 1000000000000000000)",
+        "groupby": ["tx_type"],
+        "orientation": "vertical"
+      },
+      "position": {
+        "x": 4,
+        "y": 56,
+        "w": 4,
+        "h": 8
+      }
+    },
+    {
+      "id": 18,
+      "slice_name": "Average Task Reward by Type",
+      "viz_type": "bar",
+      "datasource": "tasks",
+      "params": {
+        "metric": "AVG(reward)",
+        "groupby": ["task_type"],
+        "orientation": "horizontal"
+      },
+      "position": {
+        "x": 8,
+        "y": 56,
+        "w": 4,
+        "h": 8
+      }
+    },
+    {
+      "id": 19,
+      "slice_name": "Battery Level Over Time",
+      "viz_type": "line",
+      "datasource": "robot_telemetry",
+      "params": {
+        "metrics": ["AVG(battery_level)"],
+        "groupby": ["robot_id", "DATE(timestamp)"],
+        "time_range": "Last 24 hours"
+      },
+      "position": {
+        "x": 0,
+        "y": 64,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 20,
+      "slice_name": "Network Latency Heatmap",
+      "viz_type": "heatmap",
+      "datasource": "robot_telemetry",
+      "params": {
+        "metric": "AVG(network_latency)",
+        "groupby": ["robot_id", "HOUR(timestamp)"]
+      },
+      "position": {
+        "x": 6,
+        "y": 64,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 21,
+      "slice_name": "CPU and Memory Usage",
+      "viz_type": "dual_line",
+      "datasource": "robot_telemetry",
+      "params": {
+        "metrics": ["AVG(cpu_usage)", "AVG(memory_usage)"],
+        "groupby": ["DATE(timestamp)"],
+        "time_range": "Last 7 days"
+      },
+      "position": {
+        "x": 0,
+        "y": 72,
+        "w": 6,
+        "h": 8
+      }
+    },
+    {
+      "id": 22,
+      "slice_name": "Task Success Rate",
+      "viz_type": "big_number_total",
+      "datasource": "tasks",
+      "params": {
+        "metric": "ROUND(COUNT(CASE WHEN status = 'completed' THEN 1 END) * 100.0 / COUNT(*), 2)",
+        "subheader": "Percentage of completed tasks"
+      },
+      "position": {
+        "x": 6,
+        "y": 72,
+        "w": 3,
+        "h": 4
+      }
+    },
+    {
+      "id": 23,
+      "slice_name": "Average Execution Time",
+      "viz_type": "big_number_total",
+      "datasource": "task_metrics",
+      "params": {
+        "metric": "ROUND(AVG(execution_time), 2)",
+        "subheader": "Seconds"
+      },
+      "position": {
+        "x": 9,
+        "y": 72,
+        "w": 3,
+        "h": 4
+      }
+    },
+    {
+      "id": 24,
+      "slice_name": "Total Staked Amount",
+      "viz_type": "big_number_total",
+      "datasource": "robots",
+      "params": {
+        "metric": "SUM(staked_amount)",
+        "number_format": "SMART_NUMBER"
+      },
+      "position": {
+        "x": 6,
+        "y": 76,
+        "w": 3,
+        "h": 4
+      }
+    },
+    {
+      "id": 25,
+      "slice_name": "Transactions by Status",
+      "viz_type": "pie",
+      "datasource": "transactions",
+      "params": {
+        "metric": "COUNT(*)",
+        "groupby": ["status"]
+      },
+      "position": {
+        "x": 9,
+        "y": 76,
+        "w": 3,
+        "h": 4
+      }
+    }
+  ],
+  "owners": [],
+  "roles": [],
+  "tags": ["robovm", "robotics", "blockchain", "analytics"]
+}
+

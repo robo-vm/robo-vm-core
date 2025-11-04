@@ -1,0 +1,44 @@
+{
+  "name": "robovm-chain",
+  "version": "1.0.0",
+  "description": "RoboVM Smart Contracts",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "deploy:bsc": "hardhat run scripts/deploy.js --network bsc",
+    "deploy:bsc-testnet": "hardhat run scripts/deploy.js --network bscTestnet",
+    "deploy:amoy": "hardhat run scripts/deploy.js --network amoy",
+    "verify": "hardhat verify",
+    "node": "hardhat node"
+  },
+  "keywords": [
+    "blockchain",
+    "binance-smart-chain",
+    "bsc",
+    "bep-20",
+    "smart-contracts",
+    "robotics",
+    "defi"
+  ],
+  "author": "RoboVM Team",
+  "license": "MIT",
+  "homepage": "https://robovm.space",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robovm/robovm.git"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "hardhat": "^2.19.0",
+    "solidity-coverage": "^0.8.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
+

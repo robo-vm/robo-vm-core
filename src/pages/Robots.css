@@ -1,0 +1,75 @@
+.robots {
+  padding: 2rem;
+}
+
+.robots h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.robots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.robot-card {
+  background-color: #1a1f3a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #2d3653;
+}
+
+.robot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.robot-header h2 {
+  font-size: 1.3rem;
+}
+
+.robot-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.robot-status.active {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.robot-status.idle {
+  background-color: #6b7280;
+  color: #ffffff;
+}
+
+.robot-status.executing {
+  background-color: #f59e0b;
+  color: #ffffff;
+}
+
+.robot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-label {
+  color: #888;
+}
+
+.info-value {
+  font-weight: 500;
+}
+

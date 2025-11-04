@@ -1,0 +1,25 @@
+robot:
+  id: "robot_001"
+  type: "rover"
+  battery:
+    capacity: 100.0
+    warning_threshold: 20.0
+  sensors:
+    camera: true
+    lidar: true
+    gps: true
+    imu: true
+  blockchain:
+    rpc_url: "http://127.0.0.1:8545"
+    contract_address: "0x0000000000000000000000000000000000000000"
+    private_key_env: "ROBOT_PRIVATE_KEY"
+    network: "bsc"
+  ipfs:
+    host: "127.0.0.1"
+    port: 5001
+    gateway: "http://127.0.0.1:8080"
+  navigation:
+    max_speed: 1.0
+    max_acceleration: 0.5
+    waypoint_tolerance: 0.1
+
