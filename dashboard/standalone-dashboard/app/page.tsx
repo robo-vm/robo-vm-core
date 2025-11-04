@@ -12,7 +12,7 @@ import {
   getRobotStatusDistribution,
   getReputationScores,
   getEnergyConsumption,
-} from './data/mockData';
+} from './data/sampleData';
 import MetricCard from './components/MetricCard';
 import LineChart from './components/LineChart';
 import BarChart from './components/BarChart';
