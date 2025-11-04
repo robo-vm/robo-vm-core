@@ -5,9 +5,10 @@
 }
 
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #081529;
   padding: 1rem 2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(210, 97, 143, 0.2);
 }
 
 .header-content {
@@ -90,11 +91,12 @@
 }
 
 .footer {
-  background-color: #1a1f3a;
+  background-color: #081529;
   padding: 1rem;
   text-align: center;
   color: #888;
   margin-top: auto;
+  border-top: 1px solid rgba(210, 97, 143, 0.2);
 }
 
 .footer-links {

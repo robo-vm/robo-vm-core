@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { FaRobot, FaClipboardList, FaCheckCircle, FaCoins } from 'react-icons/fa';
 import './Dashboard.css';
 
-const COLORS = ['#d2618f', '#667eea', '#764ba2', '#10b981', '#f59e0b', '#ef4444'];
+const COLORS = ['#d2618f', '#667eea', '#764ba2', '#a855f7', '#8b5cf6', '#7c3aed'];
 
 function generateTimeSeriesData(days = 30) {
   const data = [];
@@ -24,19 +25,19 @@ function generateTimeSeriesData(days = 30) {
 
 function generateRobotDistribution() {
   return [
-    { name: 'Active', value: 12, color: '#10b981' },
-    { name: 'Idle', value: 5, color: '#f59e0b' },
-    { name: 'Maintenance', value: 2, color: '#ef4444' },
-    { name: 'Offline', value: 1, color: '#6b7280' }
+    { name: 'Active', value: 12, color: '#d2618f' },
+    { name: 'Idle', value: 5, color: '#667eea' },
+    { name: 'Maintenance', value: 2, color: '#764ba2' },
+    { name: 'Offline', value: 1, color: '#a855f7' }
   ];
 }
 
 function generateTaskStatus() {
   return [
-    { name: 'Completed', value: 142, color: '#10b981' },
+    { name: 'Completed', value: 142, color: '#d2618f' },
     { name: 'In Progress', value: 8, color: '#667eea' },
-    { name: 'Pending', value: 5, color: '#f59e0b' },
-    { name: 'Failed', value: 3, color: '#ef4444' }
+    { name: 'Pending', value: 5, color: '#764ba2' },
+    { name: 'Failed', value: 3, color: '#a855f7' }
   ];
 }
 
@@ -107,26 +108,6 @@ function Dashboard() {
     <div className="dashboard-container">
       <div className="dashboard-layout">
         <aside className="sidebar">
-          <div className="sidebar-section">
-            <h3>Quick Stats</h3>
-            <div className="quick-stat">
-              <span className="quick-stat-label">Network</span>
-              <span className="quick-stat-value">BSC</span>
-            </div>
-            <div className="quick-stat">
-              <span className="quick-stat-label">Chain ID</span>
-              <span className="quick-stat-value">56</span>
-            </div>
-            <div className="quick-stat">
-              <span className="quick-stat-label">Block Height</span>
-              <span className="quick-stat-value">{stats?.blockchainHeight?.toLocaleString() || '0'}</span>
-            </div>
-            <div className="quick-stat">
-              <span className="quick-stat-label">Gas Price</span>
-              <span className="quick-stat-value">3.2 Gwei</span>
-            </div>
-          </div>
-
           <div className="sidebar-section">
             <h3>System Health</h3>
             <div className="health-item">
@@ -216,7 +197,9 @@ function Dashboard() {
 
           <div className="stats-grid">
             <div className="stat-card">
-              <div className="stat-icon">🤖</div>
+              <div className="stat-icon">
+                <FaRobot />
+              </div>
               <div className="stat-content">
                 <h3>Active Robots</h3>
                 <p className="stat-value">{stats?.activeRobots || 0}</p>
@@ -224,7 +207,9 @@ function Dashboard() {
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">📋</div>
+              <div className="stat-icon">
+                <FaClipboardList />
+              </div>
               <div className="stat-content">
                 <h3>Pending Tasks</h3>
                 <p className="stat-value">{stats?.pendingTasks || 0}</p>
@@ -232,7 +217,9 @@ function Dashboard() {
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">✅</div>
+              <div className="stat-icon">
+                <FaCheckCircle />
+              </div>
               <div className="stat-content">
                 <h3>Completed Tasks</h3>
                 <p className="stat-value">{stats?.completedTasks || 0}</p>
@@ -240,7 +227,9 @@ function Dashboard() {
               </div>
             </div>
             <div className="stat-card">
-              <div className="stat-icon">💸</div>
+              <div className="stat-icon">
+                <FaCoins />
+              </div>
               <div className="stat-content">
                 <h3>Total Rewards</h3>
                 <p className="stat-value">{stats?.totalRewards || '0'} RVM</p>
@@ -252,7 +241,7 @@ function Dashboard() {
           <div className="charts-grid">
             <div className="chart-card">
               <h3>Task Activity (30 Days)</h3>
-              <ResponsiveContainer width="100%" height={250}>
+              <ResponsiveContainer width="100%" height={200}>
                 <AreaChart data={timeSeriesData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1a1f3a" />
                   <XAxis dataKey="date" stroke="#888" />
@@ -266,7 +255,7 @@ function Dashboard() {
 
             <div className="chart-card">
               <h3>Robot Distribution</h3>
-              <ResponsiveContainer width="100%" height={250}>
+              <ResponsiveContainer width="100%" height={200}>
                 <PieChart>
                   <Pie
                     data={robotDistribution}
@@ -289,7 +278,7 @@ function Dashboard() {
 
             <div className="chart-card">
               <h3>Hourly Activity</h3>
-              <ResponsiveContainer width="100%" height={250}>
+              <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={hourlyData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1a1f3a" />
                   <XAxis dataKey="hour" stroke="#888" />
@@ -302,7 +291,7 @@ function Dashboard() {
 
             <div className="chart-card">
               <h3>Task Status</h3>
-              <ResponsiveContainer width="100%" height={250}>
+              <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={taskStatus} layout="vertical">
                   <CartesianGrid strokeDasharray="3 3" stroke="#1a1f3a" />
                   <XAxis type="number" stroke="#888" />
