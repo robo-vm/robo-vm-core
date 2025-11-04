@@ -169,20 +169,12 @@ export default function DashboardPage() {
             <h2 className="text-xl font-semibold mb-4 text-robovm-accent">
               Transaction Volume
             </h2>
-            <div className="mb-6">
-              <Timeline
-                dates={monthDates}
-                selectedDate={selectedDate}
-                onDateChange={setSelectedDate}
-                autoPlay={true}
-                speed={2000}
-              />
-            </div>
-            <AreaChart
-              data={transactionVolume}
-              xKey="hour"
-              yKey="count"
-              color="#d2618f"
+            <Timeline
+              dates={monthDates}
+              selectedDate={selectedDate}
+              onDateChange={setSelectedDate}
+              autoPlay={true}
+              speed={2000}
             />
           </div>
         </div>
