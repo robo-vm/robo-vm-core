@@ -12,6 +12,9 @@ import {
   getRobotStatusDistribution,
   getReputationScores,
   getEnergyConsumption,
+  getMonthDates,
+  getDailyTaskActivity,
+  getHourlyActivity,
 } from './data/sampleData';
 import MetricCard from './components/MetricCard';
 import LineChart from './components/LineChart';
@@ -22,11 +25,21 @@ import Table from './components/Table';
 import Heatmap from './components/Heatmap';
 import GaugeChart from './components/GaugeChart';
 import ScatterChart from './components/ScatterChart';
+import Timeline from './components/Timeline';
 import WalletButton from './components/WalletButton';
 import WalletInfo from './components/WalletInfo';
 
 export default function DashboardPage() {
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | 'all'>('7d');
+  const monthDates = useMemo(() => getMonthDates(), []);
+  const [selectedDate, setSelectedDate] = useState<Date>(() => {
+    const today = new Date();
+    return new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  });
+  
+  // Get daily activity data based on selected date
+  const dailyTaskActivity = useMemo(() => getDailyTaskActivity(selectedDate), [selectedDate]);
+  const hourlyActivity = useMemo(() => getHourlyActivity(selectedDate), [selectedDate]);
   
   const activeRobots = useMemo(() => robots.filter(r => r.status === 'active').length, []);
   const pendingTasks = useMemo(() => tasks.filter(t => t.status === 'pending').length, []);
@@ -156,11 +169,46 @@ export default function DashboardPage() {
             <h2 className="text-xl font-semibold mb-4 text-robovm-accent">
               Transaction Volume
             </h2>
+            <div className="mb-6">
+              <Timeline
+                dates={monthDates}
+                selectedDate={selectedDate}
+                onDateChange={setSelectedDate}
+                autoPlay={true}
+                speed={2000}
+              />
+            </div>
             <AreaChart
               data={transactionVolume}
               xKey="hour"
               yKey="count"
               color="#d2618f"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <div className="bg-robovm-border rounded-lg p-6 border border-robovm-border/50">
+            <h2 className="text-xl font-semibold mb-4 text-robovm-accent">
+              Task Activity (Ziua Selectată)
+            </h2>
+            <LineChart
+              data={dailyTaskActivity}
+              xKey="hour"
+              yKey="tasks"
+              color="#4a90e2"
+            />
+          </div>
+
+          <div className="bg-robovm-border rounded-lg p-6 border border-robovm-border/50">
+            <h2 className="text-xl font-semibold mb-4 text-robovm-accent">
+              Activitate pe Ore (Ziua Selectată)
+            </h2>
+            <BarChart
+              data={hourlyActivity}
+              xKey="hour"
+              yKey="transactions"
+              color="#50c878"
             />
           </div>
         </div>

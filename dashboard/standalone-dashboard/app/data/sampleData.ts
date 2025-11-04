@@ -139,3 +139,56 @@ export const getEnergyConsumption = () => {
     }));
 };
 
+// Get dates for current month
+export const getMonthDates = (): Date[] => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  
+  return Array.from({ length: daysInMonth }, (_, i) => {
+    return new Date(year, month, i + 1);
+  });
+};
+
+// Get task activity for a specific date (hourly breakdown)
+export const getDailyTaskActivity = (date: Date) => {
+  const hours = Array.from({ length: 24 }, (_, i) => i);
+  const dateStr = date.toISOString().split('T')[0];
+  
+  // Generate realistic task activity data for the day
+  return hours.map(hour => {
+    // Simulate activity patterns - more activity during day hours
+    const baseActivity = hour >= 6 && hour < 22 ? 15 : 5;
+    const randomVariation = Math.floor(Math.random() * 10);
+    
+    return {
+      hour: hour,
+      tasks: Math.max(0, baseActivity + randomVariation - 5),
+      completed: Math.max(0, Math.floor((baseActivity + randomVariation - 5) * 0.8)),
+      created: Math.max(0, Math.floor((baseActivity + randomVariation - 5) * 0.2)),
+    };
+  });
+};
+
+// Get hourly activity for a specific date (transactions, tasks, etc.)
+export const getHourlyActivity = (date: Date) => {
+  const hours = Array.from({ length: 24 }, (_, i) => i);
+  const dateStr = date.toISOString().split('T')[0];
+  
+  // Generate realistic hourly activity data
+  return hours.map(hour => {
+    // Peak hours simulation
+    const isPeakHour = (hour >= 9 && hour < 12) || (hour >= 14 && hour < 18);
+    const baseActivity = isPeakHour ? 25 : 10;
+    const randomVariation = Math.floor(Math.random() * 15);
+    
+    return {
+      hour: hour,
+      transactions: Math.max(0, baseActivity + randomVariation - 7),
+      tasks: Math.max(0, Math.floor((baseActivity + randomVariation - 7) * 0.6)),
+      robots: Math.max(0, Math.floor((baseActivity + randomVariation - 7) * 0.4)),
+    };
+  });
+};
+
