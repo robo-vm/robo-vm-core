@@ -113,7 +113,7 @@ Test coverage includes:
 * OpenZeppelin contracts for security
 * ReentrancyGuard protection
 * Pull-over-push payment pattern
-* Comprehensive test coverage
+* Comprehensive test coverage.
 
 ## Contract Addresses
 
