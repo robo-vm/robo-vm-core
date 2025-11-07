@@ -21,6 +21,12 @@
   overflow-y: auto;
   max-height: calc(100vh - 250px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .sidebar-section {
@@ -335,27 +341,12 @@
   gap: 0.5rem;
   font-family: 'Courier New', monospace;
   font-size: 0.75rem;
-  scrollbar-width: thin;
-  scrollbar-color: #d2618f #081529;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 .log-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.log-content::-webkit-scrollbar-track {
-  background: #081529;
-  border-radius: 4px;
-}
-
-.log-content::-webkit-scrollbar-thumb {
-  background: #d2618f;
-  border-radius: 4px;
-  border: 1px solid rgba(210, 97, 143, 0.3);
-}
-
-.log-content::-webkit-scrollbar-thumb:hover {
-  background: #b8557f;
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .log-entry {
