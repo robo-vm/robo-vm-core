@@ -172,6 +172,12 @@
   gap: 1rem;
   overflow-y: auto;
   max-height: calc(100vh - 180px);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.dashboard-main::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .dashboard-header {
