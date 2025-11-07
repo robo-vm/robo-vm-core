@@ -18,3 +18,9 @@ body {
   grid-template-columns: 60px repeat(24, minmax(0, 1fr));
 }
 
+/* Dashboard zoom out 20% (scale 0.8) */
+.dashboard-container {
+  transform: scale(0.8);
+  transform-origin: top left;
+}
+
